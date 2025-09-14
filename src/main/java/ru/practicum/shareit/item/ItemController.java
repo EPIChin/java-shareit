@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.shareit.item.dto.ItemDto;
+import ru.practicum.shareit.item.dto.ItemPatchDto;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class ItemController {
     @PatchMapping("/{itemId}")
     public ItemDto update(@RequestHeader(USER_HEADER) Long userId,
                           @PathVariable Long itemId,
-                          @RequestBody ItemDto patch) {
+                          @Valid @RequestBody ItemPatchDto patch) {
         return service.update(userId, itemId, patch);
     }
 
