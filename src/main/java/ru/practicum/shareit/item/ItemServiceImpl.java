@@ -112,25 +112,23 @@ public class ItemServiceImpl implements ItemService {
     }
 
     private void fillBookingDates(ItemDto dto, Long itemId) {
-        bookingRepository.findLastBooking(itemId).stream().findFirst()
-                .ifPresent(booking -> dto.setLastBooking(
-                        new BookingShortDto(
-                                booking.getId(),
-                                booking.getBooker().getId(),
-                                booking.getStart(),
-                                booking.getEnd()
-                        )
-                ));
+        bookingRepository.findLastBooking(itemId).ifPresent(booking -> dto.setLastBooking(
+                new BookingShortDto(
+                        booking.getId(),
+                        booking.getBooker().getId(),
+                        booking.getStart(),
+                        booking.getEnd()
+                )
+        ));
 
-        bookingRepository.findNextBooking(itemId).stream().findFirst()
-                .ifPresent(booking -> dto.setNextBooking(
-                        new BookingShortDto(
-                                booking.getId(),
-                                booking.getBooker().getId(),
-                                booking.getStart(),
-                                booking.getEnd()
-                        )
-                ));
+        bookingRepository.findNextBooking(itemId).ifPresent(booking -> dto.setNextBooking(
+                new BookingShortDto(
+                        booking.getId(),
+                        booking.getBooker().getId(),
+                        booking.getStart(),
+                        booking.getEnd()
+                )
+        ));
     }
 
     @Override

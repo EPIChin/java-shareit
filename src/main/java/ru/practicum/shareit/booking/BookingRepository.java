@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
@@ -51,10 +52,10 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
     @Query("select booking from Booking booking " +
             "where booking.item.id = :itemId and booking.start <= current_timestamp " +
             "order by booking.end desc")
-    List<Booking> findLastBooking(@Param("itemId") Long itemId);
+    Optional<Booking> findLastBooking(@Param("itemId") Long itemId);
 
     @Query("select booking from Booking booking " +
             "where booking.item.id = :itemId and booking.start > current_timestamp " +
             "order by booking.start asc")
-    List<Booking> findNextBooking(@Param("itemId") Long itemId);
+    Optional<Booking> findNextBooking(@Param("itemId") Long itemId);
 }
