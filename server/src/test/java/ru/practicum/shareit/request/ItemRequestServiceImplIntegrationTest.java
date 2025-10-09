@@ -147,6 +147,6 @@ class ItemRequestServiceImplIntegrationTest {
 
         assertThat(dto.getId()).isEqualTo(request.getId());
         assertThat(dto.getItems()).hasSize(1);
-        assertThat(dto.getItems().get(0).getName()).isEqualTo("Ladder");
+        assertThat(dto.getItems().getFirst().getName()).isEqualTo("Ladder");
     }
 }
