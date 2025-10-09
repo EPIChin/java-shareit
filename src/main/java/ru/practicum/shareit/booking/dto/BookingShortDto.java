@@ -2,7 +2,6 @@ package ru.practicum.shareit.booking.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import ru.practicum.shareit.booking.BookingStatus;
 
 import java.time.LocalDateTime;
 
@@ -11,19 +10,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookingDto {
+public class BookingShortDto {
     private Long id;
+
+    @NotNull(message = "ID пользователя обязательный!")
+    private Long bookerId;
 
     @NotNull(message = "Дата начала бронирования обязательна!")
     private LocalDateTime start;
 
     @NotNull(message = "Дата окончания бронирования обязательна!")
     private LocalDateTime end;
-
-    @NotNull(message = "ID предмета обязательный!")
-    private Long itemId;
-
-    private Long bookerId;
-
-    private BookingStatus status;
 }

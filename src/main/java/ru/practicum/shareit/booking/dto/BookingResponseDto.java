@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookingDto {
+public class BookingResponseDto {
     private Long id;
 
     @NotNull(message = "Дата начала бронирования обязательна!")
@@ -20,10 +20,28 @@ public class BookingDto {
     @NotNull(message = "Дата окончания бронирования обязательна!")
     private LocalDateTime end;
 
-    @NotNull(message = "ID предмета обязательный!")
-    private Long itemId;
-
-    private Long bookerId;
-
     private BookingStatus status;
+
+    private BookerShortDto booker;
+
+    private ItemShortDto item;
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class BookerShortDto {
+        private Long id;
+    }
+
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class ItemShortDto {
+        private Long id;
+        private String name;
+    }
 }
