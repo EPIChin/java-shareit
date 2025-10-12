@@ -1,5 +1,6 @@
 package ru.practicum.shareit.item.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -25,7 +26,10 @@ public class ItemDto {
     @NotNull(message = "Статус доступности должен быть указан")
     private Boolean available;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private BookingShortDto lastBooking;
+
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private BookingShortDto nextBooking;
     private List<CommentDto> comments;
     private Long requestId;
